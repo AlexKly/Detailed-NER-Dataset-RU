@@ -58,7 +58,7 @@ Also, in repository you will find utils for relabeling tags. There are 4 functio
 * `detailed2default` - convert current tags to tag list: LOC, PER
 * `detailed2custom` - convert current tags to predefined custom tag list.
 
-For more details how to use these function check test.
+For more details how to use these functions check test.
 
 ## Demo
 If you want use dataset in your code just follow steps:
@@ -95,4 +95,5 @@ are report and results after training:
 | 9     | 0.009700      | 0.090862        | 0.806397  | 0.888683 | 0.845543 | 0.979446 |
 | 10    | 0.006500      | 0.083708        | 0.863309  | 0.890538 | 0.876712 | 0.983462 |
 
+Results of prediction trained on dataset:
 ![Result of prediction](img/res_pred.png "Result of prediction")
