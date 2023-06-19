@@ -3,14 +3,14 @@ import pandas as pd
 from utils.relabeling import *
 
 TAG_MAP_VALID = {
-    'PER': ['DMN_LAST_NAME', 'DMN_FIRST_NAME', 'DMN_MIDDLE_NAME'],
-    'LOC': ['DMN_COUNTRY', 'DMN_CITY'],
-    'STREET': ['DMN_STREET', 'DMN_HOUSE'],
+    'PER': ['LAST_NAME', 'FIRST_NAME', 'MIDDLE_NAME'],
+    'LOC': ['COUNTRY', 'CITY'],
+    'STREET': ['STREET', 'HOUSE'],
 }
 TAG_MAP_INVALID = {
-    'PER': ['DMN_LAST_NAME', 'DMN_FIRST_NAME', 'DMN_MIDDLE_NAME'],
-    'LOC': ['DMN_COUNTRY', 'DMN_CITY', 'DMN_STREET', 'DMN_HOUSE'],
-    'STREET': ['DMN_STREET', 'DMN_HOUSE'],
+    'PER': ['LAST_NAME', 'FIRST_NAME', 'MIDDLE_NAME'],
+    'LOC': ['COUNTRY', 'CITY', 'STREET', 'HOUSE'],
+    'STREET': ['STREET', 'HOUSE'],
 }
 sample = pd.DataFrame({
     'tokens': [
@@ -19,26 +19,26 @@ sample = pd.DataFrame({
         ["Alex's", 'address', ':', 'Moscow', ',', 'Velikoy', 'Podedy', 'street', ',', '25'],
     ],
     'ner_tags': [
-        ['U-DMN_CITY', 'O', 'O', 'O', 'O', 'U-DMN_COUNTRY'],
-        ['U-DMN_FIRST_NAME', 'O', 'O', 'O'],
-        ['U-DMN_FIRST_NAME', 'O', 'O', 'U-DMN_CITY', 'O', 'B-DMN_STREET', 'L-DMN_STREET', 'O', 'O', 'U-DMN_HOUSE'],
+        ['U-CITY', 'O', 'O', 'O', 'O', 'U-COUNTRY'],
+        ['U-FIRST_NAME', 'O', 'O', 'O'],
+        ['U-FIRST_NAME', 'O', 'O', 'U-CITY', 'O', 'B-STREET', 'L-STREET', 'O', 'O', 'U-HOUSE'],
     ]
 })
 
 
 def test_biolu2bio():
     assert sample['ner_tags'].apply(biolu2bio).tolist() == [
-        ['B-DMN_CITY', 'O', 'O', 'O', 'O', 'B-DMN_COUNTRY'],
-        ['B-DMN_FIRST_NAME', 'O', 'O', 'O'],
-        ['B-DMN_FIRST_NAME', 'O', 'O', 'B-DMN_CITY', 'O', 'B-DMN_STREET', 'I-DMN_STREET', 'O', 'O', 'B-DMN_HOUSE'],
+        ['B-CITY', 'O', 'O', 'O', 'O', 'B-COUNTRY'],
+        ['B-FIRST_NAME', 'O', 'O', 'O'],
+        ['B-FIRST_NAME', 'O', 'O', 'B-CITY', 'O', 'B-STREET', 'I-STREET', 'O', 'O', 'B-HOUSE'],
     ]
 
 
 def test_biolu2single_token():
     assert sample['ner_tags'].apply(biolu2single_token).tolist() == [
-        ['DMN_CITY', 'O', 'O', 'O', 'O', 'DMN_COUNTRY'],
-        ['DMN_FIRST_NAME', 'O', 'O', 'O'],
-        ['DMN_FIRST_NAME', 'O', 'O', 'DMN_CITY', 'O', 'DMN_STREET', 'DMN_STREET', 'O', 'O', 'DMN_HOUSE'],
+        ['CITY', 'O', 'O', 'O', 'O', 'COUNTRY'],
+        ['FIRST_NAME', 'O', 'O', 'O'],
+        ['FIRST_NAME', 'O', 'O', 'CITY', 'O', 'STREET', 'STREET', 'O', 'O', 'HOUSE'],
     ]
 
 

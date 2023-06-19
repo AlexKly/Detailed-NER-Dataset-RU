@@ -1,8 +1,8 @@
 from collections import Counter
 
 # Constants:
-LOC_TAGS = ['DMN_COUNTRY', 'DMN_REGION', 'DMN_CITY', 'DMN_DISTRICT', 'DMN_STREET', 'DMN_HOUSE']
-PER_TAGS = ['DMN_LAST_NAME', 'DMN_FIRST_NAME', 'DMN_MIDDLE_NAME']
+LOC_TAGS = ['COUNTRY', 'REGION', 'CITY', 'DISTRICT', 'STREET', 'HOUSE']
+PER_TAGS = ['LAST_NAME', 'FIRST_NAME', 'MIDDLE_NAME']
 
 
 # Utils:
@@ -32,7 +32,7 @@ def biolu2single_token(tags: list) -> list:
 
         Example:
 
-        ['B-DMN_COUNTRY', 'L-DMN_COUNTRY'] --> ['DMN_COUNTRY', 'DMN_COUNTRY']
+        ['B-COUNTRY', 'L-COUNTRY'] --> ['COUNTRY', 'COUNTRY']
 
         :param tags: NER-tags for text tokens.
         :return: Relabeled NER-tokens.
@@ -45,9 +45,9 @@ def detailed2default(tags: list) -> list:
 
     Map of default tags:
 
-    LOC: 'DMN_COUNTRY', 'DMN_REGION', 'DMN_CITY', 'DMN_DISTRICT', 'DMN_STREET', 'DMN_HOUSE'
+    LOC: 'COUNTRY', 'REGION', 'CITY', 'DISTRICT', 'STREET', 'HOUSE'
 
-    PER: 'DMN_LAST_NAME', 'DMN_FIRST_NAME', 'DMN_MIDDLE_NAME'
+    PER: 'LAST_NAME', 'FIRST_NAME', 'MIDDLE_NAME'
 
     :param tags: NER-tags for text tokens.
     :return: Relabeled NER-tokens.
@@ -64,9 +64,9 @@ def detailed2custom(tags: list, tag_map: dict) -> list:
     Example:
 
     dict{
-        'STREET': ['DMN_STREET', 'DMN_HOUSE'],
-        'REGION': ['DMN_REGION', 'DMN_CITY', 'DMN_DISTRICT'],
-        'LOC': ['DMN_LAST_NAME', 'DMN_FIRST_NAME', 'DMN_MIDDLE_NAME'],
+        'STREET': ['STREET', 'HOUSE'],
+        'REGION': ['REGION', 'CITY', 'DISTRICT'],
+        'LOC': ['LAST_NAME', 'FIRST_NAME', 'MIDDLE_NAME'],
     }
 
     :param tags: NER-tags for text tokens.
